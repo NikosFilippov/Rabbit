@@ -33,7 +33,7 @@ st.dataframe(view.head())
 perf = view.groupby("ticker")["price"].agg(["first", "last"])
 perf["return_%"] = ( perf["last"] / perf["first"] - 1 ) * 100
 best = perf["return_%"].idxmax()
-c1, c2, c3 = st.columns
+c1, c2, c3 = st.columns(3)
 c1.metric( "Tickers", len(tickers) )
 c2.metric( "Days in window", view["date"].nunique() )
 c3.metric( f"Best: {best}", f"{perf.loc[best, 'return_%']:+.1f}%" )
