@@ -8,7 +8,7 @@ st.title("Watchlist Explorer")
 st.caption("Stock market data from Yahoo Finance. Select stocks, dates, and compare performance.")
 @st.cache_data(ttl=300)
 def load_data():
-    tickers = ["AAPL", "MSFT", "AMZN", "GOOG", "META", "NFLX"]
+    tickers = ["AAPL", "MSFT", "AMZN", "GOOG", "META", "NFLX",,"BTC-USD", "ETH-USD", "ADA-USD", "BNB-USD",]
     data = yf.download(tickers, period="2y", interval="1d", auto_adjust=True, progress=False)
     data = data["Close"].reset_index()
     long = data.melt(id_vars="Date", var_name="ticker", value_name="price")
