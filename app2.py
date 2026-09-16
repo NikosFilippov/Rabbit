@@ -5,6 +5,8 @@ import streamlit as st
 import yfinance as yf
 import plotly.express as px
 import plotly.graph_objects as go
+import matplotlib.pyplot as plt
+import seaborn as sns
 st.set_page_config(page_title="Market Analytics View",page_icon="📊", layout="wide")
 st.title("Market Analytics View")
 st.caption("An interactive dashboard for stocks, crypto, indices, and commodities.")
@@ -332,10 +334,6 @@ st.dataframe(
 if show_correlation:
     st.divider()
     st.subheader("Correlation Matrix")
-    st.caption(
-        "Correlation measures the strength and direction of linear co-movement. "
-        "It does not establish causation."
-    )
 
     correlation_data = view.pivot(
         index="date",
@@ -346,25 +344,27 @@ if show_correlation:
     correlation_returns = correlation_data.pct_change().dropna()
 
     if correlation_returns.shape[1] < 2:
-        st.info("Select at least two assets to calculate a correlation matrix.")
+        st.info("Select at least two assets to calculate correlation.")
     else:
         correlation_matrix = correlation_returns.corr()
 
-        correlation_chart = px.imshow(
+        fig, ax = plt.subplots(figsize=(10, 6))
+
+        sns.heatmap(
             correlation_matrix,
-            text_auto=".2f",
-            aspect="auto",
-            title="Correlation of daily returns",
-            labels={"color": "Correlation"},
-            zmin=-1,
-            zmax=1,
+            annot=True,
+            fmt=".2f",
+            cmap="coolwarm",
+            vmin=-1,
+            vmax=1,
+            center=0,
+            linewidths=0.5,
+            ax=ax,
         )
 
-        correlation_chart.update_layout(
-            margin=dict(l=10, r=10, t=50, b=10),
-        )
-
-        st.plotly_chart(correlation_chart, use_container_width=True)
+        ax.set_title("Correlation of Daily Returns")
+        st.pyplot(fig)
+        plt.close(fig)
 #Finally the download buttons and stating i got the data from yahoo finance
 st.divider()
 st.subheader("Export Data")
