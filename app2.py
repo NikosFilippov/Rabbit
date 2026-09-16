@@ -3,8 +3,8 @@ import pandas as pd
 import streamlit as st
 import yfinance as yf
 import plotly.express as px
-st.set_page_config(page_title="Ntina eisai o erwtas ths zwhs moy", layout="wide")
-st.title("Ntina eisai o erwtas ths zwhs moy")
+st.set_page_config(page_title="Market Analytics View", layout="wide")
+st.title("Market Analytics View")
 st.caption("Stock market data from Yahoo Finance. Select stocks, dates, and compare performance.")
 @st.cache_data(ttl=300)
 def load_data():
