@@ -4,4 +4,4 @@ yfinance
 streamline
 datetime
 seaborn
-matplotlib.pyplot
+matplotlib
