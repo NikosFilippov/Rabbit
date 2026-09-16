@@ -315,7 +315,7 @@ if show_correlation:
             correlation_matrix,
             annot=True,
             fmt=".2f",
-            cmap="coolwarm",
+            cmap="tab20",
             vmin=-1,
             vmax=1,
             center=0,
@@ -325,8 +325,8 @@ if show_correlation:
 
         ax.set_title("Correlation of Daily Returns")
         st.pyplot(fig)
-        plt.xlabel("")
-        plt.ylabel("")
+        plt.xlabel("Selected Tickers")
+        plt.ylabel("Selected Tickers")
         plt.close(fig)
 #Finally the download buttons and stating i got the data from yahoo finance
 st.divider()
