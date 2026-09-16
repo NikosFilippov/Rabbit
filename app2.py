@@ -21,22 +21,27 @@ assets = {
         "META": "Meta",
         "NFLX": "Netflix",
         "NVDA": "NVIDIA",
+        "TSLA" : "Tesla",
     },
     "Crypto": {
         "BTC-USD": "Bitcoin",
         "ETH-USD": "Ethereum",
         "ADA-USD": "Cardano",
         "BNB-USD": "Binance Coin",
+        "XRP-USD": "Ripple",
+        "SOL-USD" : "Solana",
     },
     "Indices": {
         "^GSPC": "S&P 500",
         "^IXIC": "Nasdaq Composite",
         "^DJI": "Dow Jones",
+        "^RUT" : "Russell 2000",
     },
     "Commodities": {
         "GC=F": "Gold",
         "SI=F": "Silver",
         "CL=F": "Crude Oil",
+        "NG=F": "Natural Gas"
     },
 }
 ticker_names = {
