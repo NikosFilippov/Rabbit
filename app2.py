@@ -292,44 +292,6 @@ st.dataframe(
     use_container_width=True,
     hide_index=True,
 )
-#Volatility analysis
-st.subheader("Volatility Analysis")
-
-returns = view.sort_values(["ticker", "date"]).copy()
-returns["daily_return"] = returns.groupby("ticker")["price"].pct_change()
-
-volatility = (
-    returns.groupby(["ticker", "name"])["daily_return"]
-    .std()
-    .mul(100)
-    .reset_index(name="Daily Volatility (%)")
-    .sort_values("Daily Volatility (%)", ascending=False)
-)
-
-volatility["Daily Volatility (%)"] = volatility["Daily Volatility (%)"].round(3)
-
-volatility_chart = px.bar(
-    volatility,
-    x="name",
-    y="Daily Volatility (%)",
-    labels={
-        "name": "Asset",
-        "Daily Volatility (%)": "Daily volatility (%)",
-    },
-    title="Standard deviation of daily returns",
-)
-
-volatility_chart.update_layout(
-    margin=dict(l=10, r=10, t=50, b=10),
-)
-
-st.plotly_chart(volatility_chart, use_container_width=True)
-
-st.dataframe(
-    volatility.rename(columns={"name": "Asset"}),
-    use_container_width=True,
-    hide_index=True,
-)
 #Correlation Matrix
 if show_correlation:
     st.divider()
