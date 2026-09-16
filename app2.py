@@ -310,12 +310,13 @@ if show_correlation:
         correlation_matrix = correlation_returns.corr()
 
         fig, ax = plt.subplots(figsize=(10, 6))
-
+        correlation_matrix.index.name = None
+        correlation_matrix.columns.name = None
         sns.heatmap(
             correlation_matrix,
             annot=True,
             fmt=".2f",
-            cmap="tab20",
+            cmap="coolwarm",
             vmin=-1,
             vmax=1,
             center=0,
@@ -325,8 +326,8 @@ if show_correlation:
 
         ax.set_title("Correlation of Daily Returns")
         st.pyplot(fig)
-        plt.xlabel("Selected Tickers")
-        plt.ylabel("Selected Tickers")
+        plt.xlabel("")
+        plt.ylabel("")
         plt.close(fig)
 #Finally the download buttons and stating i got the data from yahoo finance
 st.divider()
