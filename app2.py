@@ -1,5 +1,4 @@
 import time
-from datetime import date, timedelta
 import pandas as pd
 import streamlit as st
 import yfinance as yf
@@ -7,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import seaborn as sns
-st.set_page_config(page_title="Market Analytics View",page_icon="📊", layout="wide")
+st.set_page_config(page_title="Market Analytics View", layout="wide")
 st.title("Market Analytics View")
 st.caption("An interactive dashboard for stocks, crypto, indices, and commodities.")
 #I begin to name the stocks and seperate them into different categories so its easier for the people to understand what each
@@ -129,11 +128,11 @@ with st.sidebar:
     min_date = df["date"].min().date()
     max_date = df["date"].max().date()
 
-    selected_dates = st.date_input(
+    start_date, end_date = st.slider(
         "Date range",
-        value=(max(min_date, max_date - timedelta(days=365)), max_date),
         min_value=min_date,
         max_value=max_date,
+        value=(min_date, max_date),
     )
 
     rebase_prices = st.checkbox(
@@ -160,11 +159,6 @@ if not selected_tickers:
     st.warning("Please select at least one asset from the sidebar.")
     st.stop()
 
-if isinstance(selected_dates, tuple) and len(selected_dates) == 2:
-    start_date, end_date = selected_dates
-else:
-    start_date = selected_dates
-    end_date = selected_dates
 #Filter data that is going to be shown depending on the sidebar selections thhe user has put
 #it loads the selected tickers and the selected timeframes or shows that no data is available
 #It calculates the data on a percentage scale in order to visualize certain metrics a bit better
