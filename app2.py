@@ -142,7 +142,7 @@ with st.sidebar:
 
     rebase_prices = st.checkbox(
         "Rebase prices to 100",
-        value=False,
+        value=True,
         help="Useful for comparing relative performance.",
     )
 
